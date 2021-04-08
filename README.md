@@ -24,7 +24,8 @@ Currently, the server checks for POST on /test, and tries to parse it as a form 
 ## Attaching to pyreval
 My imagined expectation is that instead of import test, the server script will import pyreval, and given specific POST requests (for instance, to /getBulkScore, or to /getIndividualScore), will call specific functions in the pyreval script. The getIndividualScore corresponding function will take the answer string (and possibly even question ID or question-category-ID, if different sets of questions are measured against different pyramids), and return the corresponding score related info. This return can be any python object and doesn't need to be a string. The notebook will handle the rest~
 
-Updates:
+##Updates:
+
 0. First, download PyrEval (from new_impl branch) and copy the folder to this repo/directory.
 1. PyrEval now has a function in pyreval_flask,py, getIndividualScore(str) which will take as an input a text summary (string) and will return a dictionary structure which just contains the raw scores (coverage, quality, etc.) as of now.
 2. PyrEval was first made as a package by adding, __init__.py to it. The parameters.ini file under PyrEval folder, then need to be modified as follows:
