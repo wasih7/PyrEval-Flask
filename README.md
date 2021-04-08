@@ -24,16 +24,16 @@ Currently, the server checks for POST on /test, and tries to parse it as a form 
 ## Attaching to pyreval
 My imagined expectation is that instead of import test, the server script will import pyreval, and given specific POST requests (for instance, to /getBulkScore, or to /getIndividualScore), will call specific functions in the pyreval script. The getIndividualScore corresponding function will take the answer string (and possibly even question ID or question-category-ID, if different sets of questions are measured against different pyramids), and return the corresponding score related info. This return can be any python object and doesn't need to be a string. The notebook will handle the rest~
 
-##Updates:
+## Updates:
 
-0. First, download PyrEval (from new_impl branch) and copy the folder to this repo/directory.
-1. PyrEval now has a function in pyreval_flask,py, getIndividualScore(str) which will take as an input a text summary (string) and will return a dictionary structure which just contains the raw scores (coverage, quality, etc.) as of now.
-2. PyrEval was first made as a package by adding, __init__.py to it. The parameters.ini file under PyrEval folder, then need to be modified as follows:
+1. First, download PyrEval (from new_impl branch) and copy the folder to this repo/directory.
+2. PyrEval now has a function in pyreval_flask,py, getIndividualScore(str) which will take as an input a text summary (string) and will return a dictionary structure which just contains the raw scores (coverage, quality, etc.) as of now.
+3. PyrEval was first made as a package by adding, __init__.py to it. The parameters.ini file under PyrEval folder, then need to be modified as follows:
 	1. The BaseDir argument should now point to the absolute location of PyrEval, i.e. /path/to/this/repo/PyrEval/
 	2. An argument, PyramidPath is now added for entering the absolute path of the pyramid file on the local system. This is because at the time of scoring, no pyramid is built.
 	3. An argument, NumModels has now been added which represents the number of reference summaries which were used to build the pyramid (under PyramidPath)
-3. To run, first start the server using: flask run
-4. Then, in another terminal, need to run the script: python3 tester.py:
+4. To run, first start the server using: flask run
+5. Then, in another terminal, need to run the script: python3 tester.py:
 	1. Edit line 2 (f = open('...')) according to the path of the input text file summary which needs to be scored
-5. PyrEval will then be called and the steps will be run (split, decomposition, score) and the final results returned as an ordered dictionary
+6. PyrEval will then be called and the steps will be run (split, decomposition, score) and the final results returned as an ordered dictionary
 The above should run fine with Python3
