@@ -35,5 +35,9 @@ My imagined expectation is that instead of import test, the server script will i
 4. To run, first start the server using: flask run
 5. Then, in another terminal, need to run the script: python3 tester.py:
 	1. Edit line 2 (f = open('...')) according to the path of the input text file summary which needs to be scored
-6. PyrEval will then be called and the steps will be run (split, decomposition, score) and the final results returned as an ordered dictionary
-The above should run fine with Python3
+6. **NEW**: _Now, we have made the CoreNLP (decomposition parser used with PyrEval) more efficient for use with Flask. It should just take time for loading the annotators on the first query now and afterwards, the time for this step depends only on the particular input. For this change, however Stanford CoreNLP needs to be run in client-server fashion. Hence, we have made a script, stanford_server.py _which will find the Stanford CoreNLP directory in the PyrEval folder and start the CoreNLP server. To do the same, you just need to run: python3 stanford_server.py in this same directory in either a new terminal or a new terminal tab. (see point 5 above)
+7. PyrEval will then be called and the steps will be run (split, decomposition, score) and the final results returned as an ordered dictionary
+The above should run fine with Python3.
+
+The type of the returned dictionary is:
+{'1&0&0' (1st sentence, 0th segmentation, 0th segment id: {'text': Sentence corresponding to this segment from the student's summary,  'SCU': ID of the matched SCU from the Pyramid/None if no match},...(other such dictionaries for each matched/not matched segment)  'raw': Raw score, 'quality': Quality score, 'coverage': Coverage score, 'comprehensive': Comprehensive score}
