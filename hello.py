@@ -1,6 +1,7 @@
 from flask import Flask
 from flask import request
-from PyrEval.pyreval_flask import *
+# Wasih 05-07-21: Don't know why PyrEval appears as Pyreval sometimes
+from Pyreval.pyreval_flask import *
 
 app = Flask(__name__)
 

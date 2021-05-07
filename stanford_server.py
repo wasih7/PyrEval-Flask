@@ -7,7 +7,7 @@ else:
     import configparser
     PYTHON_VERSION = 3
 #first locate stanford directory
-pyreval_dir = os.path.join(os.getcwd(), 'PyrEval')
+pyreval_dir = os.path.join(os.getcwd(), 'Pyreval')
 
 config = configparser.ConfigParser()
 config.read(os.path.join(pyreval_dir, 'parameters.ini'))
